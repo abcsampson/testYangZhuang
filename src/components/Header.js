@@ -25,7 +25,7 @@ class Header extends React.Component {
         <p>This tool converts between Liao and Lee orthography. The latter orthography has not been finalised and is subject to change.</p>
         <ul className="nav nav-tabs">
           {this.renderLink('/', 'Converter')}
-          {this.renderLink('/romanized/', 'Documentation')}
+          {this.renderLink('/documentation/', 'Documentation')}
         </ul>
       </div>
     );

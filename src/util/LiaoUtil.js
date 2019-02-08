@@ -75,6 +75,7 @@ function tokenize(upperText) {
                 }
                 break;
             }
+            default:
         }
     } else if (glottalGlideMark) {
         initialMark = '';
@@ -567,6 +568,7 @@ function getRhyme(neutralized, options) {
                 return (options.version === 3 ? 'EW' : 'EY');
             case Nucleus.O:
                 return (options.version === 3 ? 'AW' : 'OY');
+            default:
         }
     }
 
@@ -576,6 +578,7 @@ function getRhyme(neutralized, options) {
                 return 'AO';
             case Nucleus.A:
                 return 'AU';
+            default:
         }
     }
 

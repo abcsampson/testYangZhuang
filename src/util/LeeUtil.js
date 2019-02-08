@@ -199,7 +199,6 @@ function analyze(tokens) {
         codaMark,
         vowelToneMark,
         wordToneMark,
-        original,
     } = tokens;
 
     const isGuiliu = wordToneMark === 'H';
@@ -480,6 +479,7 @@ function writeToneMark(toneless, tone) {
             case ToneCategory.C:
                 toneMarkIndex = 2;
                 break;
+            default:
         }
 
         return writeToneMarkOnVowel(toneless, toneMarkIndex);
@@ -499,6 +499,7 @@ function writeToneMark(toneless, tone) {
         case Tone.G2:
             toneMarkIndex = 3;
             break;
+        default:
     }
 
     return `${writeToneMarkOnVowel(toneless, toneMarkIndex)}H`;
