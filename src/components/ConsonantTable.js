@@ -1,34 +1,50 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import UITextConstants from '../constants/UITextConstants';
+
+const { PhonationToTableClass } = UITextConstants;
+console.log('diu');
+console.log(UITextConstants);
 const fields = [
-  "ipa",
-  "letter",
-  "phonation",
-  "example",
-  "meaning",
+  'ipa',
+  'letter',
+  'phonation',
+  'example',
+  'meaning',
 ];
 
-const displayedFields = [
-  "IPA", "Letter", "Consonantal Class", "Example", "Meaning",
+const guiliuFields = [
+  'ipa',
+  'letter',
+  'example',
+  'meaning',
 ];
 
-const phonationToRowClass = {
-  '1A': 'warning',
-  '1G': 'success',
-  '1U': 'danger',
-  '2': 'info',
-};
+const columnFields = [
+  'IPA', 'Letter', 'Consonantal Class', 'Example', 'Meaning',
+];
 
-class ConsonantTable extends React.Component {
+const guiliuColumnFields = [
+  'IPA', 'Letter', 'Example', 'Meaning',
+];
+
+export default class ConsonantTable extends React.Component {
   static propTypes = {
+    isGuiliu: PropTypes.bool,
     children: PropTypes.arrayOf(PropTypes.object),
+  };
+
+  static defaultProps = {
+    isGuiliu: false,
+    children: [],
   };
 
   renderRows() {
     const rows = this.props.children;
     const numRows = rows.length;
     const rowspans = new Array(numRows);
+    const usedFields = this.props.isGuiliu ? guiliuFields : fields;
 
     let bottom = numRows;
     for (let i = numRows - 1; i >= 0; i--) {
@@ -41,29 +57,29 @@ class ConsonantTable extends React.Component {
     }
 
     return rows.map((row, index) => {
-      const numFields = fields.length;
+      const numFields = usedFields.length;
       let rowHtml = [];
 
       for (let i = 0; i < numFields; i++) {
-        const value = row[fields[i]];
+        const value = row[usedFields[i]];
 
         if (i === 0) {
           if (rowspans[index] > -1) {
             rowHtml.push(
-              <th key={fields[i]} rowSpan={rowspans[index]}>
+              <th key={usedFields[i]} rowSpan={rowspans[index]}>
                 {value}
               </th>
             );
           }
         } else {
           rowHtml.push(
-            <th key={fields[i]}>{value}</th>
+            <th key={usedFields[i]}>{value}</th>
           );
         }
       }
 
       const { phonation } = row;
-      const rowClassName = phonationToRowClass[phonation];
+      const rowClassName = PhonationToTableClass[phonation];
 
       return (
         <tr key={index} className={rowClassName}>
@@ -74,11 +90,14 @@ class ConsonantTable extends React.Component {
   }
 
   render() {
+    const tableClassName = this.props.isGuiliu ? 'table table-striped' : 'table';
+    const displayedColumnFields = this.props.isGuiliu ? guiliuColumnFields : columnFields;
+
     return (
-      <table className="table">
+      <table className={tableClassName}>
         <thead>
           <tr>
-            {displayedFields.map((column) => (
+            {displayedColumnFields.map((column) => (
               <th key={column}>{column}</th>
             ))}
           </tr>
@@ -90,5 +109,3 @@ class ConsonantTable extends React.Component {
     );
   }
 }
-
-export default ConsonantTable;

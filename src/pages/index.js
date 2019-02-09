@@ -24,19 +24,19 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <Header subpage='/' />
+        <Header subpage='' />
         <hr />
-        <div class='container'>
-          <div class='col-md-3'>
+        <div className='container'>
+          <div className='col-md-3'>
             <h2>From</h2>
             <FromSchemeSelector />
             <input type='button' className='btn-warning' value='Clear' onClick={this.props.onInputClearClick} />
           </div>
-          <div class='col-md-9'>
+          <div className='col-md-9'>
             <InputTextField />
             <input
               type='button'
-              class='btn-success center'
+              className='btn-success center'
               style={convertButtonStyle}
               value='&#x2193; Convert &#x2193;'
               onClick={this.props.onConvert}
@@ -44,13 +44,13 @@ class Index extends React.Component {
           </div>
         </div>
         <hr />
-        <div class='container'>
-          <div class='col-md-3'>
+        <div className='container'>
+          <div className='col-md-3'>
             <h2>To</h2>
             <ToSchemeSelector />
             <input type='button' className='btn-warning' value='Clear' onClick={this.props.onOutputClearClick} />
           </div>
-          <div class='col-md-9'>
+          <div className='col-md-9'>
             <OutputTextField />
           </div>
         </div>

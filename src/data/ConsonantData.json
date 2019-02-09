@@ -302,7 +302,7 @@
       "ipa": "pj",
       "letter": "by",
       "phonation": "2",
-      "example": "byuk",
+      "example": "byouk",
       "meaning": "tomorrow"
     },
     {
@@ -360,6 +360,74 @@
       "phonation": "1U",
       "example": "nghyòy",
       "meaning": "big"
+    }
+  ],
+  "guiliu": [
+    {
+      "ipa": "͡tsʰ/͡tɕʰ/s/ɕ",
+      "letter": "ch",
+      "example": "kènh châh",
+      "meaning": "檢查"
+    },
+    {
+      "ipa": "tj",
+      "letter": "ty",
+      "example": "tyáawh châh",
+      "meaning": "調查"
+    },
+    {
+      "ipa": "tʰj",
+      "letter": "thy",
+      "example": "thyâawh kéenh",
+      "meaning": "條件"
+    },
+    {
+      "ipa": "sj/ɕj",
+      "letter": "sy",
+      "example": "kîh syâangh",
+      "meaning": "吉祥"
+    },
+    {
+      "ipa": "͡tsj/͡tɕj",
+      "letter": "cy",
+      "example": "cyàangh coáangh",
+      "meaning": "獎狀"
+    },
+    {
+      "ipa": "͡tsʰj/͡tɕʰj/sj/ɕj",
+      "letter": "chy",
+      "example": "chyâangh cìh",
+      "meaning": "牆紙"
+    },
+    {
+      "ipa": "θj/ɬj",
+      "letter": "sly",
+      "example": "slyàawh hyôh",
+      "meaning": "小學"
+    },
+    {
+      "ipa": "nj",
+      "letter": "ny",
+      "example": "nyáawh slúh",
+      "meaning": "尿素"
+    },
+    {
+      "ipa": "lj",
+      "letter": "ly",
+      "example": "cîh lyáangh",
+      "meaning": "質量"
+    },
+    {
+      "ipa": "hj (j)",
+      "letter": "hy",
+      "example": "hyáawh kòh",
+      "meaning": "效果"
+    },
+    {
+      "ipa": "hw (ʋ)",
+      "letter": "hw",
+      "example": "cungh hwâh",
+      "meaning": "中華"
     }
   ]
 }
