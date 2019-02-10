@@ -9,6 +9,8 @@ import InputTextField from '../components/InputTextField';
 import OutputTextField from '../components/OutputTextField';
 import ToSchemeSelector from '../components/ToSchemeSelector';
 
+import '../css/table.css';
+
 const convertButtonStyle = {
   width: '100%',
   fontSize: '18pt',

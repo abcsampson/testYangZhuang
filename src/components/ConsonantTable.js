@@ -4,8 +4,7 @@ import React from 'react';
 import UITextConstants from '../constants/UITextConstants';
 
 const { PhonationToTableClass } = UITextConstants;
-console.log('diu');
-console.log(UITextConstants);
+
 const fields = [
   'ipa',
   'letter',

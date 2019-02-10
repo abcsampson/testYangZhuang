@@ -2,10 +2,12 @@ import React from 'react';
 
 import ConsonantTable from '../components/ConsonantTable';
 import Header from '../components/Header';
+import RimeTable from '../components/RimeTable';
 import ToneBox from '../components/ToneBox';
 import ToneBoxRow from '../components/ToneBoxRow';
 
 import ConsonantData from '../data/ConsonantData.json';
+import RimeData from '../data/RimeData.json';
 import ToneBoxData from '../data/ToneBoxData.json';
 
 const TaiToneBoxData = ToneBoxData.tai;
@@ -17,7 +19,7 @@ export default class Documentation extends React.Component {
       <table className="table">
         <thead>
           <tr>
-            <th></th>
+            <th>Dialect</th>
             {['1', '2', '3', '4'].map((number) => (
               <th key={number}>
                 {`Guiliu Tone ${number}`}
@@ -103,6 +105,14 @@ export default class Documentation extends React.Component {
           </div>
           <h3>Tone Boxes for Guiliu words</h3>
           {this.renderGuiliuToneBox()}
+        </div>
+        <hr />
+
+        <div className='container'>
+          <h2>Rimes</h2>
+          <RimeTable>
+            {RimeData}
+          </RimeTable>
         </div>
         <hr />
       </div>
