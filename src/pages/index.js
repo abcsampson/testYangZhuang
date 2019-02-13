@@ -9,8 +9,6 @@ import InputTextField from '../components/InputTextField';
 import OutputTextField from '../components/OutputTextField';
 import ToSchemeSelector from '../components/ToSchemeSelector';
 
-import '../css/table.css';
-
 const convertButtonStyle = {
   width: '100%',
   fontSize: '18pt',
@@ -32,17 +30,20 @@ class Index extends React.Component {
           <div className='col-md-3'>
             <h2>From</h2>
             <FromSchemeSelector />
-            <input type='button' className='btn-warning' value='Clear' onClick={this.props.onInputClearClick} />
+            <button type='button' className='btn btn-warning btn-sm' onClick={this.props.onInputClearClick}>
+              Clear
+            </button>
           </div>
           <div className='col-md-9'>
             <InputTextField />
-            <input
+            <button
               type='button'
-              className='btn-success center'
+              className='btn btn-success center'
               style={convertButtonStyle}
-              value='&#x2193; Convert &#x2193;'
               onClick={this.props.onConvert}
-            />
+            >
+              &#x2193; Convert &#x2193;
+            </button>
           </div>
         </div>
         <hr />
@@ -50,7 +51,9 @@ class Index extends React.Component {
           <div className='col-md-3'>
             <h2>To</h2>
             <ToSchemeSelector />
-            <input type='button' className='btn-warning' value='Clear' onClick={this.props.onOutputClearClick} />
+            <button type='button' className='btn btn-warning btn-sm' onClick={this.props.onOutputClearClick}>
+              Clear
+            </button>
           </div>
           <div className='col-md-9'>
             <OutputTextField />

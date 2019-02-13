@@ -16,6 +16,10 @@ const finalOrder = [
   'empty', 'j', 'w', 'm', 'n', 'ŋ', 'p', 't', 'k',
 ];
 
+const shortened = [
+    'a', 'ey', 'ew', 'ow', 'uy', 'o', 'u',
+]
+
 const leftColumnStyle = {
   width: '10%',
 };
@@ -30,9 +34,22 @@ export default class RimeTable extends React.Component {
   };
 
   renderRow(row) {
-    return fields.map((field) => (
-      <th key={field}>{row[field]}</th>
-    ));
+    return fields.map((field) => {
+      let className = null;
+      if (field === 'letter') {
+        if (shortened.includes(row.letter)) {
+          className = 'danger';
+        } else if (row.letter === 'oa/oh') {
+          className = 'info';
+        }
+      }
+
+      return (
+        <th key={field} className={className}>
+          {row[field]}
+        </th>
+      );
+    });
   }
 
   renderRows() {
