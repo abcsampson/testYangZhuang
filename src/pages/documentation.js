@@ -1,14 +1,18 @@
 import React from 'react';
 
 import ConsonantTable from '../components/ConsonantTable';
+import GuiliuToneDeductionTable from '../components/GuiliuToneDeductionTable';
 import Header from '../components/Header';
 import RimeTable from '../components/RimeTable';
 import ToneBox from '../components/ToneBox';
 import ToneBoxRow from '../components/ToneBoxRow';
+import ToneCategoryTable from '../components/ToneCategoryTable';
+import ToneDeductionTable from '../components/ToneDeductionTable';
 
 import ConsonantData from '../data/ConsonantData.json';
 import RimeData from '../data/RimeData.json';
 import ToneBoxData from '../data/ToneBoxData.json';
+import ToneExampleData from '../data/ToneExampleData.json';
 
 const TaiToneBoxData = ToneBoxData.tai;
 const GuiliuToneBoxData = ToneBoxData.guiliu;
@@ -105,22 +109,22 @@ export default class Documentation extends React.Component {
         <h2>Rimes</h2>
         <p>
           Yang Zhuang has 12 vowel phonemes and 14 basic vowel letters.
-          Each vowel letter carries a D-Value, which is either long or short.
-          D-Value only affects the tone of syllables ending with -p, -t and -k
-          and it does not affect the quality of the vowel.
+          Each vowel letter carries a tenseness, which is either tense or lax.
+          Tenseness only affects the tone of syllables ending with -p, -t and -k
+          and it does not affect the quality nor the actual length of the vowel.
           All vowels except /ə/ and /ʊ/
-          are either long or short. These vowels only have one representation.
-          As /ə/ and /ʊ/ can be both long or short, there are two representations
-          for their long and short counterparts respectively.
+          are either tense or lax. These vowels only have one representation.
+          As /ə/ and /ʊ/ can be both tense and lax, there are two representations
+          for their tense and lax counterparts respectively.
         </p>
         <RimeTable>
           {RimeData}
         </RimeTable>
         <h4>Notes</h4>
-        <p class="bg-danger" style={{ padding: '15px' }}>
+        <p className="bg-danger" style={{ padding: '15px' }}>
           Red cells: Double vowel letters are shortened to single.
         </p>
-        <p class="bg-info" style={{ padding: '15px' }}>
+        <div className="bg-info" style={{ padding: '15px' }}>
           Blue cell:
           <ul>
             <li>
@@ -132,7 +136,7 @@ export default class Documentation extends React.Component {
               This letter combination will be explained below.
             </li>
           </ul>
-        </p>
+        </div>
         <h3>Speical Vowel Letters: oa, oaa</h3>
         <p>
           There are two special vowel letters, 'oa' and 'oaa'. They represent
@@ -170,7 +174,7 @@ export default class Documentation extends React.Component {
             </tr>
           </tbody>
         </table>
-        <p class="bg-danger" style={{ padding: '15px' }}>
+        <p className="bg-danger" style={{ padding: '15px' }}>
           In Debao mainstream dialects, the rule applies except when the syllable
           ends with -oa. In this case, it does not simplify into -o but should
           be pronounced as /ɔ/.
@@ -216,13 +220,13 @@ export default class Documentation extends React.Component {
               <th>slaak</th>
               <th>clear (a.)</th>
             </tr>
-            <tr class='danger'>
+            <tr className='danger'>
               <th>ngwoan</th>
               <th>won</th>
               <th>wan</th>
               <th>daytime (Napo: ngon)</th>
             </tr>
-            <tr class='danger'>
+            <tr className='danger'>
               <th>khwoan</th>
               <th>khon</th>
               <th>khwan</th>
@@ -230,6 +234,22 @@ export default class Documentation extends React.Component {
             </tr>
           </tbody>
         </table>
+        <h3>Wait! How about the tenseness...</h3>
+        <div className="bg-info" style={{ padding: '15px' }}>
+          There is an easy way to determine the tenseness of a vowel.
+          <ol>
+            <li>
+              If the vowel is -oa or -oaa, convert into its pronunciation
+              spelling. For example, convert 'soak' to 'sok' (Debao) or 'sak' (Jingxi).
+            </li>
+            <li>
+              If the vowel is -i, then it is tense.
+            </li>
+            <li>
+              Otherwise, a single-letter vowel is lax and double-letter vowel is tense.
+            </li>
+          </ol>
+        </div>
       </div>
     );
   }
@@ -238,7 +258,42 @@ export default class Documentation extends React.Component {
     return (
       <div className='container'>
         <h2>Tones</h2>
-        <h3>Tone Boxes for Tai words</h3>
+        <p>
+          Yang Zhuang words are classified into two main categories: Native Tai
+          words and loanwords from Guiliu Mandarin. Each of these two categories
+          has its own rule to represent tones. Also, there is a small set of words
+          which do not follow the regular tonal reflex of either source. These
+          exceptional words are mostly onomatopoeias, sentence final particles
+          and frequent words that underwent tone change.
+        </p>
+        <h3>Tones of Tai Words</h3>
+        <p>
+          Most Yang Zhuang dialects have a 6-tone system which is derived from
+          an earlier 3-tone system through a tonal split according to the phonation
+          of the initial consonant. As different Yang Zhuang dialects have
+          different tonal split patterns, the same tone in a certain dialect
+          may correspond to different tones in another dialect. Therefore, it is
+          impossible to account for all Yang Zhuang dialects if we write tones
+          according to a single 'standard' dialect.
+        </p>
+        <p>
+          In this orthography, we only mark the tonal category from the original
+          3-tone system. In syllables ending with a sonorant, there are 3 tonal
+          categories A, B and C. In syllables ending with an obstruent, there
+          are 2 tonal categories DL and DS based on the tenseness of the vowel.
+        </p>
+        <ToneCategoryTable>
+          {ToneExampleData.category}
+        </ToneCategoryTable>
+        <h3>Tone Boxes for Tai Words</h3>
+        <p>
+          A tone box shows the tonal distribution of a Yang Zhuang dialect.
+          The columns represent the tonal categories and the rows represent the
+          consonantal class. Every cell represents the actual tone value of a
+          specific combination of the tonal category and the consonantal class.
+          Therefore, the actual tone of the syllable can be deduced given
+          its consonantal class, tonal cateogory and the tone box of the dialect.
+        </p>
         <div className='col-md-6'>
           <ToneBox title='Debao Urban'>
             {TaiToneBoxData['debao_urban']}
@@ -261,8 +316,88 @@ export default class Documentation extends React.Component {
             {TaiToneBoxData['napo_urban']}
           </ToneBox>
         </div>
+        <h4>Examples please?</h4>
+        <p>
+          The examples below show how to deduce the actual tone value of a
+          native Tai syllable.
+        </p>
+        <ToneDeductionTable>
+          {ToneExampleData.deduction}
+        </ToneDeductionTable>
+        <h3>Tones of Guiliu Words</h3>
+        <p>
+          Yang Zhuang has borrowed words from Guiliu Mandarin.
+          Guiliu Mandarin uses 4-tone system. When Guiliu Mandarin words were
+          borrowed into a Yang Zhuang, their tones are adapted to become some of the
+          existing Tai tones. Again, every dialect has its own correspondence rules.
+        </p>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Guiliu Tone</th>
+              <th>Example</th>
+              <th>Rule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Guiliu Tone 1</th>
+              <th>slaanh</th>
+              <th>No one mark, add -h at the end.</th>
+            </tr>
+            <tr>
+              <th>Guiliu Tone 2</th>
+              <th>kôh</th>
+              <th>Circumflex (â), add -h at the end.</th>
+            </tr>
+            <tr>
+              <th>Guiliu Tone 3</th>
+              <th>yèenh</th>
+              <th>Grave accent (à), add -h at the end.</th>
+            </tr>
+            <tr>
+              <th>Guiliu Tone 4</th>
+              <th>yíh</th>
+              <th>Acute accent (á), add -h at the end.</th>
+            </tr>
+          </tbody>
+        </table>
+        <div className="bg-info" style={{ padding: '15px' }}>
+          Consonantal class is irrelevant for Guiliu Mandarin loanwords. If there
+          are more than one letter combinations to write the initial consonant, use the rule:
+          <ol>
+            <li>Use the combination with less letters.</li>
+            <li>In case of a tie, use the combination with consonantal class 1A or 1U.</li>
+          </ol>
+          By rule 1, 'yèenh' is written instead of 'yhèenh'.
+          <br />
+          By rule 2, 'kôh' is written instead of 'gôh'.
+        </div>
         <h3>Tone Boxes for Guiliu words</h3>
         {this.renderGuiliuToneBox()}
+        <p className="bg-info" style={{ padding: '15px' }}>
+          In Jingxi Urban dialect, tonal split has occured for Guiliu Tone 4
+          syllables. The tone is pronounced as 33ʔ for voiceless-intial syllables,
+          and 213ʔ for voiced-initial syllables.
+        </p>
+        <h4>Examples</h4>
+        <p>
+          The examples below show how to deduce the actual tone value of a
+          Guiliu Mandarin loanword syllable.
+        </p>
+        <GuiliuToneDeductionTable>
+          {ToneExampleData.guiliuDeduction}
+        </GuiliuToneDeductionTable>
+        <h3>Where to put the tone mark?</h3>
+        <ol>
+          <li>If there is only 1 vowel letter, put it on that letter. Example: tóy</li>
+          <li>Otherwise, if the first 2 vowel letters are different, put it on the second letter. Example: joèy</li>
+          <li>If the first 2 vowel letters are the same, put it on the first letter. Example: káang</li>
+        </ol>
+        <h3>Exceptional Words</h3>
+        <p>
+          Say something about 'koeyr', 'leer', 'ndùh ndòh', 'ôw'
+        </p>
       </div>
     );
   }
@@ -306,6 +441,13 @@ export default class Documentation extends React.Component {
       <div>
         <Header subpage='/documentation' />
         <hr />
+        <div className='container'>
+          <div className="bg-danger" style={{ padding: '15px' }}>
+            <h2 style={{ marginTop: '0px' }}>Warning!</h2>
+            This is NOT a tutorial. This is a linguistic documentation of the orthography.
+            The intended readers are expected to have certain linguistic knowledge.
+          </div>
+        </div>
         {this.renderInitialsIntro()}
         {this.renderInitialsBody()}
         <hr />

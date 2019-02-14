@@ -9,7 +9,7 @@ const fields = [
 ];
 
 const columnLabels = [
-  'Main Vowel', 'D Tone', 'IPA', 'Letter', 'Example', 'Meaning',
+  'Main Vowel', 'Tenseness', 'IPA', 'Letter', 'Example', 'Meaning',
 ];
 
 const finalOrder = [
@@ -59,11 +59,11 @@ export default class RimeTable extends React.Component {
       return rows.map((row, index) => (
         <tr key={index}>
           {index === 0 && [
-            (<th rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
+            (<th key='vowel' rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
               {group.main}
             </th>),
-            (<th rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
-              {group.long ? 'Long' : 'Short'}
+            (<th key='tenseness' rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
+              {group.long ? 'Tense' : 'Lax'}
             </th>)
           ]}
           {this.renderRow(row)}
@@ -75,8 +75,10 @@ export default class RimeTable extends React.Component {
   render() {
     return (
       <table className='table table-striped'>
-        <col style={leftColumnStyle} />
-        <col style={leftColumnStyle} />
+        <colgroup>
+          <col style={leftColumnStyle} />
+          <col style={leftColumnStyle} />
+        </colgroup>
         <thead>
           <tr>
             {columnLabels.map((column) => (

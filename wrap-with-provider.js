@@ -10,6 +10,7 @@ const store = createStore();
 // eslint-disable-next-line react/display-name,react/prop-types
 export default ({ element }) => (
   <Provider store={store}>
+    <title>Yang Zhuang 佒壯語</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
