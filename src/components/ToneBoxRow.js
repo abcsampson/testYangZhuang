@@ -20,11 +20,11 @@ export default class ToneBoxRow extends React.Component {
   render() {
     return (
       <tr>
-        <th className={PhonationToTableClass[this.props.title]}>
+        <td className={PhonationToTableClass[this.props.title]}>
           {this.props.title}
-        </th>
+        </td>
         {this.props.children.map((cell, index) => (
-          <th key={index} style={ToneBoxUtil.getToneStyleObject(cell)}>{cell}</th>
+          <td key={index} style={ToneBoxUtil.getToneStyleObject(cell)}>{cell}</td>
         ))}
       </tr>
     );

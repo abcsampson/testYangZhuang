@@ -3,11 +3,14 @@ import React from 'react';
 import ConsonantTable from '../components/ConsonantTable';
 import GuiliuToneDeductionTable from '../components/GuiliuToneDeductionTable';
 import Header from '../components/Header';
+import Ipa from '../components/Ipa';
+import KeyTable from '../components/KeyTable';
 import RimeTable from '../components/RimeTable';
 import ToneBox from '../components/ToneBox';
 import ToneBoxRow from '../components/ToneBoxRow';
 import ToneCategoryTable from '../components/ToneCategoryTable';
 import ToneDeductionTable from '../components/ToneDeductionTable';
+import Yang from '../components/Yang';
 
 import ConsonantData from '../data/ConsonantData.json';
 import RimeData from '../data/RimeData.json';
@@ -50,20 +53,20 @@ export default class Documentation extends React.Component {
             </thead>
             <tbody>
               <tr className='warning'>
-                <th>1A</th>
-                <th>From proto voiceless aspirated consonants</th>
+                <td>1A</td>
+                <td>From proto voiceless aspirated consonants</td>
               </tr>
               <tr className='danger'>
-                <th>1U</th>
-                <th>From proto voiceless unaspirated stops or continuants</th>
+                <td>1U</td>
+                <td>From proto voiceless unaspirated stops or continuants</td>
               </tr>
               <tr className='success'>
-                <th>1G</th>
-                <th>From proto glottalized consonants</th>
+                <td>1G</td>
+                <td>From proto glottalized consonants</td>
               </tr>
               <tr className='info'>
-                <th>2</th>
-                <th>From proto voiced consonants</th>
+                <td>2</td>
+                <td>From proto voiced consonants</td>
               </tr>
             </tbody>
           </table>
@@ -80,7 +83,7 @@ export default class Documentation extends React.Component {
           letters. There are 23 simple initial phonemes and 37 simple initial letters.
         </p>
         <div className='col-md-6'>
-          <h3 id='diu'>Simple Initials</h3>
+          <h3>Simple Initials</h3>
           <ConsonantTable>
             {ConsonantData.simple}
           </ConsonantTable>
@@ -95,9 +98,12 @@ export default class Documentation extends React.Component {
             {ConsonantData.palatalized}
           </ConsonantTable>
           <h3>Initials for Guiliu Mandarin loanwords</h3>
-          <ConsonantTable isGuiliu={true}>
+          <KeyTable
+            fields={['ipa', 'letter', 'example', 'meaning']}
+            labels={['IPA', 'Letter', 'Example', 'Meaning']}
+          >
             {ConsonantData.guiliu}
-          </ConsonantTable>
+          </KeyTable>
         </div>
       </div>
     );
@@ -110,11 +116,12 @@ export default class Documentation extends React.Component {
         <p>
           Yang Zhuang has 12 vowel phonemes and 14 basic vowel letters.
           Each vowel letter carries a tenseness, which is either tense or lax.
-          Tenseness only affects the tone of syllables ending with -p, -t and -k
-          and it does not affect the quality nor the actual length of the vowel.
-          All vowels except /ə/ and /ʊ/
-          are either tense or lax. These vowels only have one representation.
-          As /ə/ and /ʊ/ can be both tense and lax, there are two representations
+          Tenseness only affects the tone of syllables ending
+          with <Yang>-p</Yang>, <Yang>-t</Yang> and <Yang>-k</Yang> and
+          it does not affect the quality nor the actual length of the vowel.
+          All vowels except <Ipa>/ə/</Ipa> and <Ipa>/ʊ/</Ipa> are
+          either tense or lax. These vowels only have one representation.
+          As <Ipa>/ə/</Ipa> and <Ipa>/ʊ/</Ipa> can be both tense and lax, there are two representations
           for their tense and lax counterparts respectively.
         </p>
         <RimeTable>
@@ -128,18 +135,18 @@ export default class Documentation extends React.Component {
           Blue cell:
           <ul>
             <li>
-              oh: This letter combination is from 'o (main vowel) + h (Guiliu loanword marker)'.
-              It is not pronounced as /o/ as in usual rules but /ɔ/.
+              <Yang>oh</Yang>: This letter combination is from '<Yang>o</Yang> (main vowel) + <Yang>h</Yang> (Guiliu loanword marker)'.
+              It is not pronounced as <Ipa>/o/</Ipa> as in usual rules but <Ipa>/ɔ/</Ipa>.
             </li>
             <li>
-              oa: It is pronounced as either /ɔ/ or /a/ depending on the dialect.
+              <Yang>oa</Yang>: It is pronounced as either <Ipa>/ɔ/</Ipa> or <Ipa>/a/</Ipa> depending on the dialect.
               This letter combination will be explained below.
             </li>
           </ul>
         </div>
-        <h3>Speical Vowel Letters: oa, oaa</h3>
+        <h3>Speical Vowel Letters: <Yang>oa</Yang> and <Yang>oaa</Yang></h3>
         <p>
-          There are two special vowel letters, 'oa' and 'oaa'. They represent
+          There are two special vowel letters, <Yang>oa</Yang> and <Yang>oaa</Yang>. They represent
           words with labialized initials in the proto language. Nowadays, the
           labialization is lost in most dialects and have different reflexes across
           dialects.
@@ -155,95 +162,50 @@ export default class Documentation extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <th>Debao mainstream</th>
-              <th className='danger'>-o-</th>
-              <th>-o-</th>
-              <th>Delete all 'a'</th>
+              <td>Debao mainstream</td>
+              <td className='danger'><Yang>-o-</Yang></td>
+              <td><Yang>-o-</Yang></td>
+              <td>Delete all <Yang>a</Yang></td>
             </tr>
             <tr>
-              <th>Jingxi, Napo</th>
-              <th>-a-</th>
-              <th>-aa-</th>
-              <th>Delete all 'o'</th>
+              <td>Jingxi, Napo</td>
+              <td><Yang>-a-</Yang></td>
+              <td><Yang>-aa-</Yang></td>
+              <td>Delete all <Yang>o</Yang></td>
             </tr>
             <tr>
-              <th>Debao Nalei-Ronghua, Tiandeng Longming, Cao Bằng</th>
-              <th>-wa-</th>
-              <th>-waa-</th>
-              <th>Change 'o' to 'w'</th>
+              <td>Debao Nalei-Ronghua, Tiandeng Longming, Cao Bằng</td>
+              <td><Yang>-wa-</Yang></td>
+              <td><Yang>-waa-</Yang></td>
+              <td>Change <Yang>o</Yang> to <Yang>w</Yang></td>
             </tr>
           </tbody>
         </table>
         <p className="bg-danger" style={{ padding: '15px' }}>
           In Debao mainstream dialects, the rule applies except when the syllable
-          ends with -oa. In this case, it does not simplify into -o but should
-          be pronounced as /ɔ/.
+          ends with <Yang>-oa</Yang>. In this case, it does not simplify into <Yang>-o</Yang> but should
+          be pronounced as <Ipa>/ɔ/</Ipa>.
         </p>
         <h4>Examples</h4>
-        <table className='table table-striped'>
-          <thead>
-            <tr>
-              <th>Syllable</th>
-              <th>Debao mainstream equivalent</th>
-              <th>Jingxi equivalent</th>
-              <th>Meaning</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>zloa</th>
-              <th>zloa (oa pronounced as /ɔ/)</th>
-              <th>zla</th>
-              <th>canoe</th>
-            </tr>
-            <tr>
-              <th>zloáay</th>
-              <th>zlóy</th>
-              <th>zláay</th>
-              <th>left side</th>
-            </tr>
-            <tr>
-              <th>phoan</th>
-              <th>phon</th>
-              <th>phan</th>
-              <th>dream</th>
-            </tr>
-            <tr>
-              <th>toàan</th>
-              <th>tòn</th>
-              <th>tàan</th>
-              <th>folk song festival</th>
-            </tr>
-            <tr>
-              <th>sloaak</th>
-              <th>slok</th>
-              <th>slaak</th>
-              <th>clear (a.)</th>
-            </tr>
-            <tr className='danger'>
-              <th>ngwoan</th>
-              <th>won</th>
-              <th>wan</th>
-              <th>daytime (Napo: ngon)</th>
-            </tr>
-            <tr className='danger'>
-              <th>khwoan</th>
-              <th>khon</th>
-              <th>khwan</th>
-              <th>soul</th>
-            </tr>
-          </tbody>
-        </table>
+        <KeyTable
+          fields={['syllable', 'debao', 'jingxi', 'meaning']}
+          labels={['Syllable', 'Debao mainstream equivalent', 'Jingxi equivalent', 'Meaning']}
+          setRowClass={(row, index) => (
+            (row.syllable === '<yang>khwoan</yang>' || row.syllable === '<yang>ngwoan</yang>') ? 'danger' : ''
+          )}
+        >
+          {ToneExampleData.vowelAlternation}
+        </KeyTable>
         <h3>Wait! How about the tenseness...</h3>
         <div className="bg-info" style={{ padding: '15px' }}>
           There is an easy way to determine the tenseness of a vowel.
           <ol>
             <li>
-              If the vowel is -oa or -oaa, convert into its pronunciation
-              spelling. For example, convert 'soak' to 'sok' (Debao) or 'sak' (Jingxi).
+              If the vowel is <Yang>oa</Yang> or <Yang>oaa</Yang>, convert into its pronunciation
+              spelling. For example, convert <Yang>soak</Yang> to <Yang>sok</Yang> (Debao) or <Yang>sak</Yang> (Jingxi).
             </li>
             <li>
-              If the vowel is -i, then it is tense.
+              If the vowel is <Yang>i</Yang>, then it is tense.
             </li>
             <li>
               Otherwise, a single-letter vowel is lax and double-letter vowel is tense.
@@ -259,12 +221,9 @@ export default class Documentation extends React.Component {
       <div className='container'>
         <h2>Tones</h2>
         <p>
-          Yang Zhuang words are classified into two main categories: Native Tai
-          words and loanwords from Guiliu Mandarin. Each of these two categories
-          has its own rule to represent tones. Also, there is a small set of words
-          which do not follow the regular tonal reflex of either source. These
-          exceptional words are mostly onomatopoeias, sentence final particles
-          and frequent words that underwent tone change.
+          Yang Zhuang words are classified into three categories: Native Tai
+          words, loanwords from Guiliu Mandarin and exceptional words. Every category
+          has its own rule to represent tones.
         </p>
         <h3>Tones of Tai Words</h3>
         <p>
@@ -331,37 +290,12 @@ export default class Documentation extends React.Component {
           borrowed into a Yang Zhuang, their tones are adapted to become some of the
           existing Tai tones. Again, every dialect has its own correspondence rules.
         </p>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Guiliu Tone</th>
-              <th>Example</th>
-              <th>Rule</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Guiliu Tone 1</th>
-              <th>slaanh</th>
-              <th>No one mark, add -h at the end.</th>
-            </tr>
-            <tr>
-              <th>Guiliu Tone 2</th>
-              <th>kôh</th>
-              <th>Circumflex (â), add -h at the end.</th>
-            </tr>
-            <tr>
-              <th>Guiliu Tone 3</th>
-              <th>yèenh</th>
-              <th>Grave accent (à), add -h at the end.</th>
-            </tr>
-            <tr>
-              <th>Guiliu Tone 4</th>
-              <th>yíh</th>
-              <th>Acute accent (á), add -h at the end.</th>
-            </tr>
-          </tbody>
-        </table>
+        <KeyTable
+          fields={['tone', 'example', 'rule']}
+          labels={['Guiliu Tone', 'Example', 'Rule']}
+        >
+          {ToneExampleData.guiliuCategory}
+        </KeyTable>
         <div className="bg-info" style={{ padding: '15px' }}>
           Consonantal class is irrelevant for Guiliu Mandarin loanwords. If there
           are more than one letter combinations to write the initial consonant, use the rule:
@@ -369,9 +303,9 @@ export default class Documentation extends React.Component {
             <li>Use the combination with less letters.</li>
             <li>In case of a tie, use the combination with consonantal class 1A or 1U.</li>
           </ol>
-          By rule 1, 'yèenh' is written instead of 'yhèenh'.
+          By rule 1, <Yang>yèenh</Yang> is written instead of <Yang>yhèenh</Yang>.
           <br />
-          By rule 2, 'kôh' is written instead of 'gôh'.
+          By rule 2, <Yang>kôh</Yang> is written instead of <Yang>gôh</Yang>.
         </div>
         <h3>Tone Boxes for Guiliu words</h3>
         {this.renderGuiliuToneBox()}
@@ -390,14 +324,34 @@ export default class Documentation extends React.Component {
         </GuiliuToneDeductionTable>
         <h3>Where to put the tone mark?</h3>
         <ol>
-          <li>If there is only 1 vowel letter, put it on that letter. Example: tóy</li>
-          <li>Otherwise, if the first 2 vowel letters are different, put it on the second letter. Example: joèy</li>
-          <li>If the first 2 vowel letters are the same, put it on the first letter. Example: káang</li>
+          <li>If there is only 1 vowel letter, put it on that letter. Example: <Yang>tóy</Yang></li>
+          <li>Otherwise, if the first 2 vowel letters are different, put it on the second letter. Example: <Yang>joèy</Yang></li>
+          <li>If the first 2 vowel letters are the same, put it on the first letter. Example: <Yang>káang</Yang></li>
         </ol>
         <h3>Exceptional Words</h3>
         <p>
-          Say something about 'koeyr', 'leer', 'ndùh ndòh', 'ôw'
+          There is a small set of words which do not follow the regular tonal
+          reflex of Tai words or Guiliu Mandarin loanwords. These exceptional
+          words are mostly onomatopoeias, sentence final particles and frequent
+          words that underwent tone change. There is no rule to determine the
+          tone of these words. The tone value has to be remembered word by word.
         </p>
+        <KeyTable
+          fields={['letter', 'example', 'rule']}
+          labels={['Tone Letter', 'Example', 'Rule']}
+        >
+          {ToneExampleData.exceptionalCategory}
+        </KeyTable>
+        <p>
+          The following shows some common exceptional words and their Debao Urban
+          pronunciation.
+        </p>
+        <KeyTable
+          fields={['word', 'ipa', 'meaning']}
+          labels={['Word', 'IPA', 'Meaning']}
+        >
+          {ToneExampleData.exceptional}
+        </KeyTable>
       </div>
     );
   }

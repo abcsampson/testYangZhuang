@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Display from './Display';
+
 import UITextConstants from '../constants/UITextConstants';
 import ToneBoxUtil from '../util/ToneBoxUtil';
 
@@ -35,12 +37,12 @@ export default class ToneDeductionTable extends React.Component {
           {this.props.children.map((row, index) => (
             <tr key={index} className={PhonationToTableClass[row.class]}>
               {fields.map((field, innerIndex) => (
-                <th
+                <td
                   key={innerIndex}
                   style={field === 'value' ? ToneBoxUtil.getToneStyleObject(row[field]) : null}
                 >
-                  {row[field]}
-                </th>
+                  <Display>{row[field]}</Display>
+                </td>
               ))}
             </tr>
           ))}

@@ -16,7 +16,8 @@
     "gatsby": "^2.0.111",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-redux": "^6.0.0"
+    "react-redux": "^6.0.0",
+    "react-string-replace": "^0.4.1"
   },
   "repository": {
     "type": "git",

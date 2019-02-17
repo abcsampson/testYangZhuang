@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Display from './Display';
+
 import UITextConstants from '../constants/UITextConstants';
 
 const { PhonationToTableClass } = UITextConstants;
@@ -13,29 +15,16 @@ const fields = [
   'meaning',
 ];
 
-const guiliuFields = [
-  'ipa',
-  'letter',
-  'example',
-  'meaning',
-];
-
 const columnFields = [
   'IPA', 'Letter', 'Consonantal Class', 'Example', 'Meaning',
 ];
 
-const guiliuColumnFields = [
-  'IPA', 'Letter', 'Example', 'Meaning',
-];
-
 export default class ConsonantTable extends React.Component {
   static propTypes = {
-    isGuiliu: PropTypes.bool,
     children: PropTypes.arrayOf(PropTypes.object),
   };
 
   static defaultProps = {
-    isGuiliu: false,
     children: [],
   };
 
@@ -43,7 +32,6 @@ export default class ConsonantTable extends React.Component {
     const rows = this.props.children;
     const numRows = rows.length;
     const rowspans = new Array(numRows);
-    const usedFields = this.props.isGuiliu ? guiliuFields : fields;
 
     let bottom = numRows;
     for (let i = numRows - 1; i >= 0; i--) {
@@ -56,23 +44,23 @@ export default class ConsonantTable extends React.Component {
     }
 
     return rows.map((row, index) => {
-      const numFields = usedFields.length;
+      const numFields = fields.length;
       let rowHtml = [];
 
       for (let i = 0; i < numFields; i++) {
-        const value = row[usedFields[i]];
+        const value = row[fields[i]];
 
         if (i === 0) {
           if (rowspans[index] > -1) {
             rowHtml.push(
-              <th key={usedFields[i]} rowSpan={rowspans[index]}>
-                {value}
-              </th>
+              <td key={fields[i]} rowSpan={rowspans[index]}>
+                <Display>{value}</Display>
+              </td>
             );
           }
         } else {
           rowHtml.push(
-            <th key={usedFields[i]}>{value}</th>
+            <td key={fields[i]}><Display>{value}</Display></td>
           );
         }
       }
@@ -89,14 +77,11 @@ export default class ConsonantTable extends React.Component {
   }
 
   render() {
-    const tableClassName = this.props.isGuiliu ? 'table table-striped' : 'table';
-    const displayedColumnFields = this.props.isGuiliu ? guiliuColumnFields : columnFields;
-
     return (
-      <table className={tableClassName}>
+      <table className='table'>
         <thead>
           <tr>
-            {displayedColumnFields.map((column) => (
+            {columnFields.map((column) => (
               <th key={column}>{column}</th>
             ))}
           </tr>

@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Display from './Display';
+
 import UITextConstants from '../constants/UITextConstants';
 
 const { PhonationToTableClass } = UITextConstants;
@@ -32,9 +34,9 @@ export default class ToneCategoryTable extends React.Component {
           {this.props.children.map((row, index) => (
             <tr key={index}>
               {fields.map((field, innerIndex) => (
-                <th key={innerIndex} className={PhonationToTableClass[field]}>
-                  {row[field]}
-                </th>
+                <td key={innerIndex} className={PhonationToTableClass[field]}>
+                  <Display>{row[field]}</Display>
+                </td>
               ))}
             </tr>
           ))}

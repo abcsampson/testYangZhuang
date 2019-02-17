@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Display from './Display';
+
 const fields = [
   'ipa',
   'letter',
@@ -17,7 +19,7 @@ const finalOrder = [
 ];
 
 const shortened = [
-    'a', 'ey', 'ew', 'ow', 'uy', 'o', 'u',
+  'a', 'ey', 'ew', 'ow', 'uy', 'o', 'u',
 ]
 
 const leftColumnStyle = {
@@ -45,9 +47,9 @@ export default class RimeTable extends React.Component {
       }
 
       return (
-        <th key={field} className={className}>
-          {row[field]}
-        </th>
+        <td key={field} className={className}>
+          <Display>{row[field]}</Display>
+        </td>
       );
     });
   }
@@ -59,12 +61,12 @@ export default class RimeTable extends React.Component {
       return rows.map((row, index) => (
         <tr key={index}>
           {index === 0 && [
-            (<th key='vowel' rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
-              {group.main}
-            </th>),
-            (<th key='tenseness' rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
+            (<td key='vowel' rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
+              <Display>{group.main}</Display>
+            </td>),
+            (<td key='tenseness' rowSpan={rows.length} className={group.long ? 'warning' : 'success'}>
               {group.long ? 'Tense' : 'Lax'}
-            </th>)
+            </td>)
           ]}
           {this.renderRow(row)}
         </tr>

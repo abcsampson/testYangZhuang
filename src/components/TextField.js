@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 const style = {
+  fontWeight: 600,
   fontSize: '21px',
 };
 

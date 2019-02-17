@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class Header extends React.Component {
+export default class Header extends React.Component {
   static propTypes = {
     subpage: PropTypes.string,
   };
@@ -31,5 +31,3 @@ class Header extends React.Component {
     );
   }
 }
-
-export default Header;
