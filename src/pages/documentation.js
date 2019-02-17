@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ConsonantTable from '../components/ConsonantTable';
-import GuiliuToneDeductionTable from '../components/GuiliuToneDeductionTable';
 import Header from '../components/Header';
 import Ipa from '../components/Ipa';
 import KeyTable from '../components/KeyTable';
@@ -9,8 +8,9 @@ import RimeTable from '../components/RimeTable';
 import ToneBox from '../components/ToneBox';
 import ToneBoxRow from '../components/ToneBoxRow';
 import ToneCategoryTable from '../components/ToneCategoryTable';
-import ToneDeductionTable from '../components/ToneDeductionTable';
 import Yang from '../components/Yang';
+
+import UITextConstants from '../constants/UITextConstants';
 
 import ConsonantData from '../data/ConsonantData.json';
 import RimeData from '../data/RimeData.json';
@@ -19,6 +19,8 @@ import ToneExampleData from '../data/ToneExampleData.json';
 
 const TaiToneBoxData = ToneBoxData.tai;
 const GuiliuToneBoxData = ToneBoxData.guiliu;
+
+const { PhonationToTableClass } = UITextConstants;
 
 export default class Documentation extends React.Component {
   renderInitialsIntro() {
@@ -280,9 +282,14 @@ export default class Documentation extends React.Component {
           The examples below show how to deduce the actual tone value of a
           native Tai syllable.
         </p>
-        <ToneDeductionTable>
+        <KeyTable
+          fields={['syllable', 'class', 'category', 'dialect', 'value']}
+          labels={['Syllable', 'Consonantal Class', 'Tonal Category', 'Dialect', 'Tone Value']}
+          setRowClass={(row) => PhonationToTableClass[row.class]}
+          colorTone={true}
+        >
           {ToneExampleData.deduction}
-        </ToneDeductionTable>
+        </KeyTable>
         <h3>Tones of Guiliu Words</h3>
         <p>
           Yang Zhuang has borrowed words from Guiliu Mandarin.
@@ -319,9 +326,13 @@ export default class Documentation extends React.Component {
           The examples below show how to deduce the actual tone value of a
           Guiliu Mandarin loanword syllable.
         </p>
-        <GuiliuToneDeductionTable>
+        <KeyTable
+          fields={['syllable', 'tone', 'dialect', 'value']}
+          labels={['Syllable', 'Guiliu Tone', 'Dialect', 'Tone Value']}
+          colorTone={true}
+        >
           {ToneExampleData.guiliuDeduction}
-        </GuiliuToneDeductionTable>
+        </KeyTable>
         <h3>Where to put the tone mark?</h3>
         <ol>
           <li>If there is only 1 vowel letter, put it on that letter. Example: <Yang>tóy</Yang></li>

@@ -3,12 +3,15 @@ import React from 'react';
 
 import Display from './Display';
 
+import ToneBoxUtil from '../util/ToneBoxUtil';
+
 export default class KeyTable extends React.Component {
   static propTypes = {
     fields: PropTypes.arrayOf(PropTypes.string),
     labels: PropTypes.arrayOf(PropTypes.string),
     children: PropTypes.arrayOf(PropTypes.object),
     setRowClass: PropTypes.func,
+    colorTone: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -16,10 +19,11 @@ export default class KeyTable extends React.Component {
     labels: [],
     children: [],
     setRowClass: () => {},
+    colorTone: false,
   };
 
   render() {
-    const { fields, labels, children, setRowClass } = this.props;
+    const { fields, labels, children, setRowClass, colorTone } = this.props;
 
     return (
       <table className='table table-striped'>
@@ -34,7 +38,9 @@ export default class KeyTable extends React.Component {
           {children.map((row, index) => (
             <tr key={index} className={setRowClass(row, index)}>
               {fields.map((field, innerIndex) => (
-                <td key={innerIndex}><Display>{row[field]}</Display></td>
+                <td key={innerIndex} style={colorTone ? ToneBoxUtil.getToneStyleObject(row[field]) : null}>
+                  <Display>{row[field]}</Display>
+                </td>
               ))}
             </tr>
           ))}

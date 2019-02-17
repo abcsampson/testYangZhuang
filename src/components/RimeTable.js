@@ -20,7 +20,9 @@ const finalOrder = [
 
 const shortened = [
   'a', 'ey', 'ew', 'ow', 'uy', 'o', 'u',
-]
+];
+
+const shortenedInData = shortened.map((rime) => (`<yang>${rime}</yang>`));
 
 const leftColumnStyle = {
   width: '10%',
@@ -39,9 +41,9 @@ export default class RimeTable extends React.Component {
     return fields.map((field) => {
       let className = null;
       if (field === 'letter') {
-        if (shortened.includes(row.letter)) {
+        if (shortenedInData.includes(row.letter)) {
           className = 'danger';
-        } else if (row.letter === 'oa/oh') {
+        } else if (row.letter === '<yang>oa/oh</yang>') {
           className = 'info';
         }
       }
