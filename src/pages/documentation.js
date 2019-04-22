@@ -83,6 +83,9 @@ export default class Documentation extends React.Component {
         <p>
           The following list shows all Yang Zhuang initials and their corresponding
           letters. There are 23 simple initial phonemes and 37 simple initial letters.
+          In some dialects, particularly Jingxi Urban, some initial phonemes have
+          merged. The IPA in brackets indicates the phonemes that the original
+          phonemes have merged into.
         </p>
         <div className='col-md-6'>
           <h3>Simple Initials</h3>
@@ -118,13 +121,14 @@ export default class Documentation extends React.Component {
         <p>
           Yang Zhuang has 12 vowel phonemes and 14 basic vowel letters.
           Each vowel letter carries a tenseness, which is either tense or lax.
-          Tenseness only affects the tone of syllables ending
+          Historically, tenseness corresponded to the actual quality of the vowel.
+          However in modern Yang Zhuang, tenseness only affects the tone of syllables ending
           with <Yang>-p</Yang>, <Yang>-t</Yang> and <Yang>-k</Yang> and
           it does not affect the quality nor the actual length of the vowel.
           All vowels except <Ipa>/ə/</Ipa> and <Ipa>/ʊ/</Ipa> are
-          either tense or lax. These vowels only have one representation.
-          As <Ipa>/ə/</Ipa> and <Ipa>/ʊ/</Ipa> can be both tense and lax, there are two representations
-          for their tense and lax counterparts respectively.
+          either tense or lax. These vowels only have one representation. <Ipa>/ə/</Ipa> and <Ipa>/ʊ/</Ipa> both
+          have a tense counterpart and a lax counterpart.
+          These counterparts evolved from different historical vowels and are represented by different letters.
         </p>
         <RimeTable>
           {RimeData}
@@ -133,7 +137,7 @@ export default class Documentation extends React.Component {
         <p className="bg-danger" style={{ padding: '15px' }}>
           Red cells: Double vowel letters are shortened to single.
         </p>
-        <div className="bg-info" style={{ padding: '15px' }}>
+        <div className="bg-info" style={{ padding: '15px', marginBottom: '10px' }}>
           Blue cell:
           <ul>
             <li>
@@ -146,6 +150,16 @@ export default class Documentation extends React.Component {
             </li>
           </ul>
         </div>
+        <p className="bg-success" style={{ padding: '15px' }}>
+          Green cells: In mainstream dialects, <Yang>om</Yang> and <Yang>op</Yang> have
+          merged with <Yang>am</Yang> and <Yang>ap</Yang> respectively. In Debao and Jingxi urban dialects,
+          these 2 merged phonemes are pronounced as <Yang>am</Yang> and <Yang>ap</Yang>.
+          In some rural dialects in Ma'ai and Jiuzhou, they are pronounced as <Yang>om</Yang> and <Yang>op</Yang> as
+          in <Yang>top</Yang> (liver) and <Yang>nóm</Yang>.
+          In peripheral dialects (Debao Longguang, Jingxi Hurun), the rimes are
+          still distinct but <Yang>om</Yang> and <Yang>op</Yang> are
+          pronounced as <Ipa>ʊm</Ipa> and <Ipa>ʊp</Ipa> respectively.
+        </p>
         <h3>Speical Vowel Letters: <Yang>oa</Yang> and <Yang>oaa</Yang></h3>
         <p>
           There are two special vowel letters, <Yang>oa</Yang> and <Yang>oaa</Yang>. They represent
@@ -203,14 +217,16 @@ export default class Documentation extends React.Component {
           There is an easy way to determine the tenseness of a vowel.
           <ol>
             <li>
-              If the vowel is <Yang>oa</Yang> or <Yang>oaa</Yang>, convert into its pronunciation
-              spelling. For example, convert <Yang>soak</Yang> to <Yang>sok</Yang> (Debao) or <Yang>sak</Yang> (Jingxi).
-            </li>
-            <li>
               If the vowel is <Yang>i</Yang>, then it is tense.
             </li>
             <li>
-              Otherwise, a single-letter vowel is lax and double-letter vowel is tense.
+              If the vowel is <Yang>oe</Yang>, then it is lax.
+            </li>
+            <li>
+              If the vowel is <Yang>oa</Yang> or <Yang>oaa</Yang>, ignore the <Yang>o</Yang> and go to the next step.
+            </li>
+            <li>
+              A single-letter vowel is lax and double-letter vowel is tense.
             </li>
           </ol>
         </div>
@@ -318,8 +334,15 @@ export default class Documentation extends React.Component {
         {this.renderGuiliuToneBox()}
         <p className="bg-info" style={{ padding: '15px' }}>
           In Jingxi Urban dialect, tonal split has occured for Guiliu Tone 4
-          syllables. The tone is pronounced as 33ʔ for voiceless-intial syllables,
-          and 213ʔ for voiced-initial syllables.
+          syllables. The split is determined by the consonantal class of the
+          corresponding loanword from Middle Chinese (even though we are
+          considering Guiliu Mandarin loanword!).
+          The tone is pronounced as 33ʔ for voiceless-intial syllables (class 1A, 1U),
+          and 213ʔ for voiced-initial syllables (class 2).
+          For example, the syllable <Yang>téngh</Yang> in <Yang>yîh téngh</Yang> has
+          a corresponding Middle Chinese loan <Yang>dèng</Yang>, which takes
+          consonantal class 2. Therefore, <Yang>téngh</Yang> is pronounced with
+          213ʔ here.
         </p>
         <h4>Examples</h4>
         <p>

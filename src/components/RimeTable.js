@@ -45,6 +45,8 @@ export default class RimeTable extends React.Component {
           className = 'danger';
         } else if (row.letter === '<yang>oa/oh</yang>') {
           className = 'info';
+        } else if (row.letter === '<yang>om</yang>' || row.letter === '<yang>op</yang>') {
+          className = 'success';
         }
       }
 
